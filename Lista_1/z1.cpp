@@ -1,7 +1,7 @@
-#include "../olcPixelGameEngine/olcPixelGameEngine.h"
+#include "../olcPixelGameEngine.h"
 #include <iostream>
 
-class GameOfLife
+class GameOfLife : public olc::PixelGameEngine
 {
 
 };
