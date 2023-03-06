@@ -7,7 +7,7 @@
 class ofApp : public ofBaseApp{
 
 	public:
-		ofApp(int _size = 6, float percentage_to_live = 20.0f)
+		ofApp(int _size = 6, float chance_to_live = 0.2f)
 		{
 			ofSetFrameRate(30);
 			size = _size;
@@ -17,7 +17,7 @@ class ofApp : public ofBaseApp{
 			{
 				cells_matrix.push_back(std::vector<bool>{});
 				for (int x = 0; x < width; ++x)
-					cells_matrix[y].push_back(glm::linearRand(0, 1000) < percentage_to_live * 10 ? true : false);
+					cells_matrix[y].push_back(glm::linearRand(0, 1000) < chance_to_live * 1000 ? true : false);
 			}
 			saved_generation = cells_matrix;
 		}
