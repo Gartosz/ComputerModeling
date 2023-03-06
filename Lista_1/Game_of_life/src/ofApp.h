@@ -9,6 +9,12 @@ class ofApp : public ofBaseApp{
 	public:
 		ofApp(int height = 200, int width = 200)
 		{
+			for (int y = 0; y < height; ++y)
+			{
+				cells_matrix.push_back(std::vector<bool>{});
+				for (int x = 0; x < width; ++x)
+					cells_matrix[y].push_back(glm::linearRand(0, 1000) > 950 ? true : false);
+			}
 		}
 		void setup();
 		void update();
