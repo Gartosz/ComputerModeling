@@ -1,1 +1,14 @@
-olcPixelGameEngine/
+.vscode/
+obj/
+bin/
+**.exe
+**.pdf
+**.png
+**.zip
+**.xlsx
+**.docx
+**.o
+Makefile
+*.make
+*.qbs
+*.code-workspace
