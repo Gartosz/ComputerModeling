@@ -32,10 +32,12 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		void update_cells();
 		
 
 	private:
 		int size = 4;
 		std::vector<std::vector<bool>> cells_matrix{};
-		
+		bool paused = true;
 };
