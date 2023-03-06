@@ -9,6 +9,7 @@ class ofApp : public ofBaseApp{
 	public:
 		ofApp(int height = 200, int width = 200)
 		{
+			ofSetFrameRate(2);
 			for (int y = 0; y < height; ++y)
 			{
 				cells_matrix.push_back(std::vector<bool>{});
