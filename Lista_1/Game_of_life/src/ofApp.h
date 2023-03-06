@@ -16,6 +16,7 @@ class ofApp : public ofBaseApp{
 				for (int x = 0; x < width; ++x)
 					cells_matrix[y].push_back(glm::linearRand(0, 1000) > 950 ? true : false);
 			}
+			saved_generation = cells_matrix;
 		}
 		void setup();
 		void update();
@@ -39,5 +40,7 @@ class ofApp : public ofBaseApp{
 	private:
 		int size = 4;
 		std::vector<std::vector<bool>> cells_matrix{};
+		std::vector<std::vector<bool>> saved_generation{};
+		std::vector<std::pair<int, int>> pos_to_check = {{-1, -1}, {-1, -0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 		bool paused = true;
 };

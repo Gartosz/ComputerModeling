@@ -9,6 +9,24 @@ void ofApp::setup(){
 
 void ofApp::update_cells()
 {
+    for (int col = 0; col < saved_generation.size(); ++col)
+    {
+        for (int row = 0; row < saved_generation[col].size(); ++row)
+        {
+            int neighbours = 0;
+            for (auto &pos : pos_to_check)
+                if (col + pos.first > 0 && col + pos.first < saved_generation.size() && row + pos.second > 0 && row + pos.second < saved_generation[col].size())
+                    if (saved_generation[col + pos.first][row + pos.second])
+                        ++neighbours;
+            if (saved_generation[col][row])
+                cells_matrix[col][row] = !(neighbours < 2 || neighbours > 3);
+
+            else if (neighbours == 3)
+                cells_matrix[col][row] = true;
+
+        }
+    }
+    saved_generation = cells_matrix;
 }
 
 //--------------------------------------------------------------
