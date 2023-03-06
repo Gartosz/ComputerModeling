@@ -62,14 +62,22 @@ void ofApp::mouseMoved(int x, int y ){
 
 }
 
+void ofApp::insert_cell(int y, int x)
+{
+    x /= size;
+    y /= size;
+    if (y > 0 && y < cells_matrix.size() && x > 0 && x < cells_matrix[0].size())
+        cells_matrix[y][x] = true;
+}
+
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+   insert_cell(y, x);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    insert_cell(y, x);
 }
 
 //--------------------------------------------------------------

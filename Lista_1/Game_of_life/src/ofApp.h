@@ -35,6 +35,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		void update_cells();
+		void insert_cell(int y, int x);
 		
 
 	private:
