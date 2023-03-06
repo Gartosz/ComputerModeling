@@ -12,6 +12,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    for (int col = 0; col < cells_matrix.size(); ++col)
+    {
+        for(int row = 0; row < cells_matrix[col].size(); ++row)
+            if (cells_matrix[col][row])
+                ofDrawRectangle(row * size, col * size, size, size);
+    }
     
 }
 
