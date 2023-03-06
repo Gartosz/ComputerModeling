@@ -1,10 +1,15 @@
 #pragma once
 
 #include "ofMain.h"
+#include <vector>
+#include <glm/gtc/random.hpp>
 
 class ofApp : public ofBaseApp{
 
 	public:
+		ofApp(int height = 200, int width = 200)
+		{
+		}
 		void setup();
 		void update();
 		void draw();
@@ -20,5 +25,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+		
+
+	private:
+		int size = 4;
+		std::vector<std::vector<bool>> cells_matrix{};
 		
 };
