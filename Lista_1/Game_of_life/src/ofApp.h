@@ -7,14 +7,17 @@
 class ofApp : public ofBaseApp{
 
 	public:
-		ofApp(int height = 200, int width = 200)
+		ofApp(int _size = 6, float percentage_to_live = 20.0f)
 		{
 			ofSetFrameRate(30);
+			size = _size;
+			int height = ofGetHeight() / size;
+			int width = ofGetWidth() / size;
 			for (int y = 0; y < height; ++y)
 			{
 				cells_matrix.push_back(std::vector<bool>{});
 				for (int x = 0; x < width; ++x)
-					cells_matrix[y].push_back(glm::linearRand(0, 1000) > 950 ? true : false);
+					cells_matrix[y].push_back(glm::linearRand(0, 1000) < percentage_to_live * 10 ? true : false);
 			}
 			saved_generation = cells_matrix;
 		}
