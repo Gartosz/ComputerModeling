@@ -43,7 +43,7 @@ void ofApp::draw(){
             if (cells_matrix[col][row])
                 ofDrawRectangle(row * size, col * size, size, size);
     }
-    
+
 }
 
 //--------------------------------------------------------------

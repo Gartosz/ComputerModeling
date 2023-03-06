@@ -9,7 +9,7 @@ class ofApp : public ofBaseApp{
 	public:
 		ofApp(int height = 200, int width = 200)
 		{
-			ofSetFrameRate(2);
+			ofSetFrameRate(30);
 			for (int y = 0; y < height; ++y)
 			{
 				cells_matrix.push_back(std::vector<bool>{});
@@ -39,7 +39,7 @@ class ofApp : public ofBaseApp{
 		
 
 	private:
-		int size = 4;
+		int size = 6;
 		std::vector<std::vector<bool>> cells_matrix{};
 		std::vector<std::vector<bool>> saved_generation{};
 		std::vector<std::pair<int, int>> pos_to_check = {{-1, -1}, {-1, -0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
