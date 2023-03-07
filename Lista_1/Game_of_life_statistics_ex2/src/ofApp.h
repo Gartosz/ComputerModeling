@@ -46,4 +46,9 @@ class ofApp : public ofBaseApp{
 		std::vector<std::vector<bool>> saved_generation{};
 		std::vector<std::pair<int, int>> pos_to_check = {{-1, -1}, {-1, -0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 		bool paused = true;
+		int frames = 0;
+		int alive = 0;
+		std::vector<float> probabilities{0.05, 0.15, 0.4, 0.5, 0.7, 0.9, 0.95};
+		std::vector<float>::iterator current = probabilities.begin();
+		std::ofstream file;
 };
