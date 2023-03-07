@@ -11,7 +11,7 @@ int main( ){
 	
 	auto window = ofCreateWindow(settings);
 
-	ofRunApp(window, make_shared<ofApp>());
+	ofRunApp(window, make_shared<ofApp>(9, 0.05));
 	ofRunMainLoop();
 
 }
