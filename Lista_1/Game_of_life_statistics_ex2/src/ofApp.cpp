@@ -21,14 +21,17 @@ void ofApp::update_cells()
                     if (saved_generation[col + pos.first][row + pos.second])
                         ++neighbours;
             if (saved_generation[col][row])
+            {
+                ++alive;
                 cells_matrix[col][row] = !(neighbours < 2 || neighbours > 3);
+            }
 
             else if (neighbours == 3)
                 cells_matrix[col][row] = true;
-
         }
     }
     saved_generation = cells_matrix;
+    ++frames;
 }
 
 //--------------------------------------------------------------
