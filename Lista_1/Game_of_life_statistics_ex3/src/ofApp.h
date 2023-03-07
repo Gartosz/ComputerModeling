@@ -52,7 +52,7 @@ class ofApp : public ofBaseApp{
 		bool paused = true;
 		int frames = 0;
 		int alive = 0;
-		std::vector<float> probabilities{0.05, 0.15, 0.4, 0.5, 0.7, 0.9, 0.95};
-		std::vector<float>::iterator current = probabilities.begin();
+		std::vector<int> grids{10, 100, 200, 500, 1000};
+		std::vector<int>::iterator current = grids.begin();
 		std::ofstream file;
 };
