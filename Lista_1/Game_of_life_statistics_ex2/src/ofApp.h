@@ -4,6 +4,7 @@
 #include <vector>
 #include <glm/gtc/random.hpp>
 #include <fstream>
+#include <algorithm>
 
 class ofApp : public ofBaseApp{
 
