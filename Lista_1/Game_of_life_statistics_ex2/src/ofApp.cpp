@@ -1,4 +1,6 @@
 #include "ofApp.h"
+#include <algorithm>
+#include <string>
 
 #define KEY_SPACE 32
 
@@ -34,10 +36,28 @@ void ofApp::update_cells()
     ++frames;
 }
 
+void ofApp::update_probability()
+{
+    file.close();
+    if (++current == probabilities.end())
+    {
+        ofExit();
+        return;
+    }
+    std::string probability = std::to_string(*current);
+    std::replace(probability.begin(), probability.end(), '.', '_');
+    std::replace(probability.begin(), probability.end(), ',', '_');
+    file.open("data/density_" + probability + ".txt");
+}
+
 //--------------------------------------------------------------
-void ofApp::update(){
+void ofApp::update()
+{
     if (!paused)
         update_cells();
+
+    if (frames >= 500)
+        update_probability();
 }
 
 //--------------------------------------------------------------

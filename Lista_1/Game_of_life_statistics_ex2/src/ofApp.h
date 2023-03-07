@@ -39,7 +39,7 @@ class ofApp : public ofBaseApp{
 
 		void update_cells();
 		void insert_cell(int y, int x);
-		
+		void update_probability();
 
 	private:
 		int size = 6;
