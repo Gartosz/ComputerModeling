@@ -16,7 +16,7 @@ class ofApp : public ofBaseApp{
 			{
 				cells_matrix.push_back(std::vector<bool>{});
 				for (int x = 0; x < width; ++x)
-					cells_matrix[y].push_back(glm::linearRand(0, 1000) < chance_to_live * 1000 ? true : false);
+					cells_matrix[y].push_back(ofRandom(1.0) < alive_probability ? true : false);
 			}
 			saved_generation = cells_matrix;
 		}
