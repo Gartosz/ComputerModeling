@@ -51,8 +51,13 @@ class ofApp : public ofBaseApp{
 		std::vector<std::pair<int, int>> pos_to_check = {{-1, -1}, {-1, -0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 		bool paused = true;
 		int frames = 0;
+		size_t iteration = 0;
 		int alive = 0;
 		std::vector<int> grids{10, 100, 200, 500, 1000};
 		std::vector<int>::iterator current = grids.begin();
 		std::ofstream file;
+		std::pair<size_t, size_t> start_dimensions{0, 0};
+		size_t n = 0;
+		float probability = 0;
+		size_t max_frame = 1000;
 };
