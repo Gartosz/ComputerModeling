@@ -3,8 +3,10 @@
 #define KEY_SPACE 32
 
 //--------------------------------------------------------------
-void ofApp::setup(){
-
+void ofApp::setup()
+{
+    file.open("data/density_0_05.txt");
+    paused = false;
 }
 
 void ofApp::update_cells()
