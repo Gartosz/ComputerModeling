@@ -9,7 +9,6 @@ class ofApp : public ofBaseApp{
 	public:
 		ofApp(int _size = 6, float alive_probability = 0.2f)
 		{
-			ofSetFrameRate(30);
 			size = _size;
 			int height = ofGetHeight() / size;
 			int width = ofGetWidth() / size;
