@@ -7,7 +7,7 @@
 class ofApp : public ofBaseApp{
 
 	public:
-		ofApp(int _size = 6, float chance_to_live = 0.2f)
+		ofApp(int _size = 6, float alive_probability = 0.2f)
 		{
 			ofSetFrameRate(30);
 			size = _size;
