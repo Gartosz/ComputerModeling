@@ -33,6 +33,7 @@ void ofApp::update_cells()
         }
     }
     saved_generation = cells_matrix;
+    save_frame();
     ++frames;
 }
 
@@ -69,6 +70,10 @@ void ofApp::draw(){
                 ofDrawRectangle(row * size, col * size, size, size);
     }
 
+void ofApp::save_frame()
+{
+    file << frames << " " << alive << std::endl;
+    alive = 0;
 }
 
 //--------------------------------------------------------------
