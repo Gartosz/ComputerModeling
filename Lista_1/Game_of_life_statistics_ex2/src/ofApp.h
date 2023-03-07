@@ -39,6 +39,7 @@ class ofApp : public ofBaseApp{
 
 		void update_cells();
 		void insert_cell(int y, int x);
+		void reset(float alive_probability);
 		void save_frame();
 		void update_probability();
 
