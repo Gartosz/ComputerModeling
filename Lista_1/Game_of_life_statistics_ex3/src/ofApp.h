@@ -11,6 +11,7 @@ class ofApp : public ofBaseApp{
 	public:
 		ofApp(int grid_length = 10, float alive_probability = 0.2f, size_t _n = 100)
 		{
+			ofSetVerticalSync(false);
 			probability = alive_probability;
 			n = _n;
 			start_dimensions = {ofGetHeight(), ofGetWidth()};
