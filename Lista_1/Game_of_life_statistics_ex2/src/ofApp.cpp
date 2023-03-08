@@ -7,7 +7,7 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-    file.open("data/density_0_05.txt");
+    file.open("data/probability_0_05.txt");
     paused = false;
 }
 
@@ -48,7 +48,7 @@ void ofApp::update_probability()
     std::string probability = std::to_string(*current);
     std::replace(probability.begin(), probability.end(), '.', '_');
     std::replace(probability.begin(), probability.end(), ',', '_');
-    file.open("data/density_" + probability + ".txt");
+    file.open("data/probability_" + probability + ".txt");
     reset(*current);
 }
 
