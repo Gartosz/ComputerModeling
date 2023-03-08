@@ -9,15 +9,16 @@
 class ofApp : public ofBaseApp{
 
 	public:
-		ofApp(int _size = 6, float alive_probability = 0.2f)
+		ofApp(int grid_length = 10, float alive_probability = 0.2f, size_t _n = 100)
 		{
-			size = _size;
-			int height = ofGetHeight() / size;
-			int width = ofGetWidth() / size;
-			for (int y = 0; y < height; ++y)
+			probability = alive_probability;
+			n = _n;
+			start_dimensions = {ofGetHeight(), ofGetWidth()};
+			size = start_dimensions.first / grid_length;
+			for (int y = 0; y < grid_length; ++y)
 			{
 				cells_matrix.push_back(std::vector<bool>{});
-				for (int x = 0; x < width; ++x)
+				for (int x = 0; x < grid_length; ++x)
 					cells_matrix[y].push_back(ofRandom(1.0) < alive_probability ? true : false);
 			}
 			saved_generation = cells_matrix;
