@@ -33,7 +33,6 @@ void ofApp::update_cells()
         }
     }
     saved_generation = cells_matrix;
-    save_frame();
     ++frames;
 }
 
