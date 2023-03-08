@@ -7,8 +7,9 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-    file.open("data/density_0_05.txt");
+    file.open("data/size_" + to_string(*current) + ".txt");
     paused = false;
+    ofLog() << "grid size: " << *current;
 }
 
 void ofApp::update_cells()
