@@ -70,14 +70,12 @@ void ofApp::draw()
                 ofDrawRectangle(col * size, row * size, size, size);
 }
 
-void ofApp::reset(float alive_probability)
+void ofApp::reset()
 {
     for (auto &row : cells_matrix)
         for (auto col : row)
-            col = ofRandom(1.0) < alive_probability ? true : false;
-
+            col = ofRandom(1.0) < probability ? true : false;
     saved_generation = cells_matrix;
-    frames = 0;
 }
 
 void ofApp::save_iteration()
