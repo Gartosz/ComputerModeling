@@ -80,10 +80,9 @@ void ofApp::reset(float alive_probability)
     frames = 0;
 }
 
-void ofApp::save_frame()
+void ofApp::save_iteration()
 {
-    file << frames << " " << alive << std::endl;
-    alive = 0;
+    file << iteration << " " << 1.0 * alive / (*current * *current) << std::endl;
 }
 
 //--------------------------------------------------------------
