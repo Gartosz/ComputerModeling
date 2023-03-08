@@ -45,6 +45,7 @@ class ofApp : public ofBaseApp{
 		void reset();
 		void save_iteration();
 		void update_grid_size();
+		void reload_grid();
 
 	private:
 		int size = 6;

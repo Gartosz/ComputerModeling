@@ -54,6 +54,14 @@ void ofApp::update_grid_size()
     iteration = 0;
 }
 
+void ofApp::reload_grid()
+{   
+    save_iteration();
+    reset();
+    frames = 0;
+    ++iteration;
+}
+
 //--------------------------------------------------------------
 void ofApp::update()
 {
@@ -62,6 +70,11 @@ void ofApp::update()
 
     if (iteration >= n)
         update_grid_size();
+
+    else if(frames >= max_frame)
+        reload_grid();
+
+    alive = 0;
 }
 
 //--------------------------------------------------------------
