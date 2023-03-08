@@ -83,7 +83,7 @@ void ofApp::reset(float alive_probability)
 
 void ofApp::save_frame()
 {
-    file << frames << " " << alive << std::endl;
+    file << frames << " " << alive / (grid_size * grid_size) << std::endl;
     alive = 0;
 }
 

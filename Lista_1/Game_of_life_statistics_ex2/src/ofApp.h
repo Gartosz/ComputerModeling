@@ -21,6 +21,7 @@ class ofApp : public ofBaseApp{
 					cells_matrix[y].push_back(ofRandom(1.0) < alive_probability ? true : false);
 			}
 			saved_generation = cells_matrix;
+			grid_size = cells_matrix.size();
 		}
 		void setup();
 		void update();
@@ -55,4 +56,5 @@ class ofApp : public ofBaseApp{
 		std::vector<float> probabilities{0.05, 0.15, 0.4, 0.5, 0.7, 0.9, 0.95};
 		std::vector<float>::iterator current = probabilities.begin();
 		std::ofstream file;
+		size_t grid_size = 0;
 };
