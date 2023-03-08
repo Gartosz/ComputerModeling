@@ -36,19 +36,22 @@ void ofApp::update_cells()
     ++frames;
 }
 
-void ofApp::update_probability()
+void ofApp::update_grid_size()
 {
     file.close();
-    if (++current == probabilities.end())
+    if (++current == grids.end())
     {
         ofExit();
         return;
     }
-    std::string probability = std::to_string(*current);
-    std::replace(probability.begin(), probability.end(), '.', '_');
-    std::replace(probability.begin(), probability.end(), ',', '_');
-    file.open("data/density_" + probability + ".txt");
-    reset(*current);
+    ofLog() << "grid size: " << *current;
+    cells_matrix.resize(*current);
+    for (auto &row : cells_matrix)
+        row.resize(*current);
+    file.open("data/size_" + to_string(*current) + ".txt");
+    size = start_dimensions.first / *current;
+    reset();
+    iteration = 0;
 }
 
 //--------------------------------------------------------------
@@ -57,8 +60,8 @@ void ofApp::update()
     if (!paused)
         update_cells();
 
-    if (frames >= 500)
-        update_probability();
+    if (iteration >= n)
+        update_grid_size();
 }
 
 //--------------------------------------------------------------

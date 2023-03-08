@@ -44,6 +44,7 @@ class ofApp : public ofBaseApp{
 		void insert_cell(int y, int x);
 		void reset();
 		void save_iteration();
+		void update_grid_size();
 
 	private:
 		int size = 6;
