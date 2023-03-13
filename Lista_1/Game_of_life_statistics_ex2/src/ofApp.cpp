@@ -77,14 +77,14 @@ void ofApp::draw()
     for (int row = 0; row < cells_matrix.size(); ++row)
         for (int col = 0; col < cells_matrix[row].size(); ++col)
             if (cells_matrix[row][col])
-                ofDrawRectangle(col * size, row * size, size, size);
+                ofDrawRectangle(col * cell_size, row * cell_size, cell_size, cell_size);
 }
 
 void ofApp::reset()
 {
     for (auto &row : cells_matrix)
         for (auto col : row)
-            col = ofRandom(1.0) < alive_probability ? true : false;
+            col = ofRandom(1.0) < *current ? true : false;
 
     saved_generation = cells_matrix;
     frames = 0;
