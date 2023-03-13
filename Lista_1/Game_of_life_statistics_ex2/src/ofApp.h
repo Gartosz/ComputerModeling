@@ -40,12 +40,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		void update_cells();
-		void insert_cell(int y, int x);
-		void reset(float alive_probability);
-		void save_frame();
-		void update_probability();
-
 	private:
 		size_t cell_size = 6;
 		std::vector<std::vector<bool>> cells_matrix{};
@@ -59,4 +53,9 @@ class ofApp : public ofBaseApp{
 		std::ofstream file;
 		size_t grid_size = 0;
 		size_t max_iteration = 0;
+		void update_cells();
+		void insert_cell(int y, int x);
+		void reset();
+		void save_frame();
+		void update_probability();
 };
