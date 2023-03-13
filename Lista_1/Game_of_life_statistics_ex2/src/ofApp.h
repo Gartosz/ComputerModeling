@@ -62,4 +62,5 @@ class ofApp : public ofBaseApp{
 		void reset();
 		void save_frame();
 		void update_probability();
+		void reload_grid();
 };

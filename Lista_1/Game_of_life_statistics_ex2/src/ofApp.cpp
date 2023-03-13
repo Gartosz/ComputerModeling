@@ -50,7 +50,14 @@ void ofApp::update_probability()
     std::replace(probability.begin(), probability.end(), '.', '_');
     std::replace(probability.begin(), probability.end(), ',', '_');
     file.open("data/probability_" + probability + ".txt");
-    reset(*current);
+void ofApp::reload_grid()
+{
+    final_densities.push_back(1.0 * alive / (grid_size * grid_size));
+    ++iteration;
+    if (iteration >= max_iteration)
+        update_probability();
+    file << "--- \"Iteration " + to_string(iteration) + "\" ---\n";
+    reset();
 }
 
 //--------------------------------------------------------------
@@ -72,7 +79,7 @@ void ofApp::draw()
                 ofDrawRectangle(col * size, row * size, size, size);
 }
 
-void ofApp::reset(float alive_probability)
+void ofApp::reset()
 {
     for (auto &row : cells_matrix)
         for (auto col : row)
