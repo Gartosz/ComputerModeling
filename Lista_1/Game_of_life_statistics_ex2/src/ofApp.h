@@ -50,9 +50,13 @@ class ofApp : public ofBaseApp{
 		int alive = 0;
 		std::vector<float> probabilities{0.05, 0.15, 0.4, 0.5, 0.7, 0.9, 0.95};
 		std::vector<float>::iterator current = probabilities.begin();
+		std::vector<double> final_densities{};
 		std::ofstream file;
+		std::ofstream summary;
 		size_t grid_size = 0;
+		size_t iteration = 0;
 		size_t max_iteration = 0;
+
 		void update_cells();
 		void insert_cell(int y, int x);
 		void reset();
