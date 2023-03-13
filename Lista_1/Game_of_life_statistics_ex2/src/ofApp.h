@@ -9,11 +9,12 @@
 class ofApp : public ofBaseApp{
 
 	public:
-		ofApp(int _size = 6, float alive_probability = 0.2f)
+		ofApp(size_t _size = 6, float alive_probability = 0.2f, size_t max_iter = 100)
 		{
-			size = _size;
-			int height = ofGetHeight() / size;
-			int width = ofGetWidth() / size;
+			cell_size = _size;
+			max_iteration = max_iter;
+			int height = ofGetHeight() / cell_size;
+			int width = ofGetWidth() / cell_size;
 			for (int y = 0; y < height; ++y)
 			{
 				cells_matrix.push_back(std::vector<bool>{});
@@ -46,7 +47,7 @@ class ofApp : public ofBaseApp{
 		void update_probability();
 
 	private:
-		int size = 6;
+		size_t cell_size = 6;
 		std::vector<std::vector<bool>> cells_matrix{};
 		std::vector<std::vector<bool>> saved_generation{};
 		std::vector<std::pair<int, int>> pos_to_check = {{-1, -1}, {-1, -0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
@@ -57,4 +58,5 @@ class ofApp : public ofBaseApp{
 		std::vector<float>::iterator current = probabilities.begin();
 		std::ofstream file;
 		size_t grid_size = 0;
+		size_t max_iteration = 0;
 };
