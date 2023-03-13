@@ -50,6 +50,7 @@ void ofApp::update_probability()
     std::replace(probability.begin(), probability.end(), '.', '_');
     std::replace(probability.begin(), probability.end(), ',', '_');
     file.open("data/probability_" + probability + ".txt");
+}
 void ofApp::reload_grid()
 {
     final_densities.push_back(1.0 * alive / (grid_size * grid_size));
