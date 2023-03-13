@@ -41,6 +41,10 @@ void ofApp::update_cells()
 void ofApp::update_probability()
 {
     file.close();
+    double mean_density = std::reduce(final_densities.begin(), final_densities.end()) / max_iteration;
+    summary << *current << " " << mean_density << std::endl;
+    final_densities.resize(0);
+    iteration = 0;
     if (++current == probabilities.end())
     {
         ofExit();
@@ -50,7 +54,9 @@ void ofApp::update_probability()
     std::replace(probability.begin(), probability.end(), '.', '_');
     std::replace(probability.begin(), probability.end(), ',', '_');
     file.open("data/probability_" + probability + ".txt");
+    reset();
 }
+
 void ofApp::reload_grid()
 {
     final_densities.push_back(1.0 * alive / (grid_size * grid_size));
