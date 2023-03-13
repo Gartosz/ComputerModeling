@@ -70,11 +70,11 @@ void ofApp::reload_grid()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-    if (!paused)
-        update_cells();
-
     if (frames >= 500)
-        update_probability();
+        reload_grid();
+
+    else if (!paused)
+        update_cells();
 }
 
 //--------------------------------------------------------------
