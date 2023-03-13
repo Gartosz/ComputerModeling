@@ -13,6 +13,7 @@ void ofApp::setup()
 
 void ofApp::update_cells()
 {
+    alive = 0;
     for (int col = 0; col < saved_generation.size(); ++col)
     {
         for (int row = 0; row < saved_generation[col].size(); ++row)
@@ -84,7 +85,7 @@ void ofApp::reset(float alive_probability)
 void ofApp::save_frame()
 {
     file << frames << " " << alive / (grid_size * grid_size) << std::endl;
-    alive = 0;
+    
 }
 
 //--------------------------------------------------------------
