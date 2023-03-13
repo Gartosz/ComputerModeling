@@ -8,6 +8,9 @@
 void ofApp::setup()
 {
     file.open("data/probability_0_05.txt");
+    summary.open("data/density_summary.txt");
+    summary << "probability	\"final density\"\n";
+    file << "--- \"Iteration 0\" ---\n";
     paused = false;
 }
 
