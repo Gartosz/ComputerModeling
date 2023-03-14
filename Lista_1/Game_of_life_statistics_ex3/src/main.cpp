@@ -11,6 +11,24 @@ double calculate_standard_error(std::vector<double> density_vector)
 	std_deviation = sqrt(std_deviation/density_vector.size());
 	return std_deviation/sqrt(density_vector.size());
 }
+
+double process_file_content(std::string file_name, size_t iterations_number)
+{
+	std::ifstream file(file_name);
+	std::string date_time;
+	std::getline(file, date_time);
+	int n;
+	double line_density;
+	std::vector<double> density_vector{};
+	for (int i = 0; i < iterations_number; ++i)
+	{
+		file >> n >> line_density;
+		density_vector.push_back(line_density);
+	}
+	file.close();
+	return calculate_standard_error(density_vector);
+}
+
 void process_files(size_t iterations_number)
 {
 	std::string dir = "data/";
