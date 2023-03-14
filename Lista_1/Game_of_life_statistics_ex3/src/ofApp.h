@@ -47,6 +47,7 @@ class ofApp : public ofBaseApp{
 		void update_grid_size();
 		void reload_grid();
 		char* get_current_time();
+		void open_file();
 
 	private:
 		int size = 6;

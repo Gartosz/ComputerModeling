@@ -12,6 +12,12 @@ void ofApp::setup()
     ofLog() << "grid size: " << *current;
 }
 
+void ofApp::open_file()
+{
+    std::string current_grid = to_string(*current);
+    file.open("data/size_" + std::string(to_string(grids.back()).length() - current_grid.length(), '0') + current_grid + ".txt");
+}
+
 char* ofApp::get_current_time()
 {
     std::time_t start_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
@@ -56,7 +62,7 @@ void ofApp::update_grid_size()
     cells_matrix.resize(*current);
     for (auto &row : cells_matrix)
         row.resize(*current);
-    file.open("data/size_" + to_string(*current) + ".txt");
+    open_file();
     file << get_current_time();
     size = start_dimensions.first / *current;
     reset();
