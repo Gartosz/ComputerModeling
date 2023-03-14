@@ -36,6 +36,13 @@ void process_files(size_t iterations_number)
 	result_file << "size\t\"standard error\"\n";
 	for(auto& p: filesystem::directory_iterator(dir))
 	{
+		std::string file_name = p.path().filename().string();
+		if ( file_name.find("size") == 0 )
+		{
+			std::string size = file_name.substr(file_name.find('_') + 1, file_name.find('.txt') - file_name.find('_') - 2);
+			result_file << size.erase(0, size.find_first_not_of('0')) << "\t";
+			result_file << process_file_content(dir + file_name, iterations_number) << std::endl;
+		}
 	}
 	result_file.close();
 }
