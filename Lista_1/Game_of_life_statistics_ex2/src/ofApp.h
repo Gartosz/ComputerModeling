@@ -11,6 +11,7 @@ class ofApp : public ofBaseApp{
 	public:
 		ofApp(size_t _size = 6, float alive_probability = 0.2f, size_t max_iter = 100)
 		{
+			ofSetVerticalSync(false);
 			cell_size = _size;
 			max_iteration = max_iter;
 			int height = ofGetHeight() / cell_size;
