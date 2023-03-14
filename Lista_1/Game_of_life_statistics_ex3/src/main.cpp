@@ -13,7 +13,7 @@ int main( )
 	
 	auto window = ofCreateWindow(settings);
 
-	ofRunApp(window, make_shared<ofApp>(10, 0.55));
+	ofRunApp(window, make_shared<ofApp>(10, 0.55, iterations_number));
 	ofRunMainLoop();
 
 }
