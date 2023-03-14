@@ -7,7 +7,7 @@
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-    file.open("data/size_" + to_string(*current) + ".txt");
+    std::sort(grids.begin(), grids.end());
     paused = false;
     ofLog() << "grid size: " << *current;
 }
