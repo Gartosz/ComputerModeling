@@ -8,7 +8,9 @@
 void ofApp::setup()
 {
     std::sort(grids.begin(), grids.end());
+    open_file();
     paused = false;
+    file << get_current_time();
     ofLog() << "grid size: " << *current;
 }
 
