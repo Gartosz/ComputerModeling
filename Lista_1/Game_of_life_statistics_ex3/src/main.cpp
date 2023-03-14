@@ -1,6 +1,17 @@
 #include "ofMain.h"
 #include "ofApp.h"
+#include <filesystem>
 
+void process_files(size_t iterations_number)
+{
+	std::string dir = "data/";
+	std::ofstream result_file("data/standard_error.txt");
+	result_file << "size\t\"standard error\"\n";
+	for(auto& p: filesystem::directory_iterator(dir))
+	{
+	}
+	result_file.close();
+}
 
 //========================================================================
 int main( )
@@ -15,5 +26,6 @@ int main( )
 
 	ofRunApp(window, make_shared<ofApp>(10, 0.55, iterations_number));
 	ofRunMainLoop();
-
+	process_files(iterations_number);
+	return 0;
 }
