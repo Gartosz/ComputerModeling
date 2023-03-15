@@ -1,5 +1,4 @@
 from re import sub
-from itertools import groupby
 
 if __name__ == "__main__":
     words_dict = {}
