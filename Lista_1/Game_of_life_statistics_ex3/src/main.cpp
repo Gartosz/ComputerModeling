@@ -8,7 +8,7 @@ double calculate_standard_error(std::vector<double> density_vector)
 	double std_deviation = 0;
 	for(auto &density : density_vector)
 		std_deviation += (density - mean) * (density - mean);
-	std_deviation = sqrt(std_deviation/density_vector.size());
+	std_deviation = sqrt(std_deviation/(density_vector.size()-1));
 	return std_deviation/sqrt(density_vector.size());
 }
 
