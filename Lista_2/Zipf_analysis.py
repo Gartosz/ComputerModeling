@@ -18,6 +18,15 @@ def generate_words_ranks(file_name):
     words_ranks = {rank + 1: (word, words_dict[word]) for rank, word in enumerate(words_dict.keys())}
     return words_ranks
 
+def make_plot(file_name, x_data, y_data, fitted, popt):
+    plt.scatter(x_data, y_data, s = 10)
+    plt.plot(x_data, fitted)
+    plt.xlabel("Liczba wystąpień")
+    plt.ylabel("Ranga")
+    plt.title(file_name)
+    plt.figtext(0.65, 0.9, "c = {c}\nb = {b}".format(c = popt[0], b = popt[1]))
+    plt.show()
+
 if __name__ == "__main__":
     files = ["tekst_1.txt"]
     for file_name in files:
@@ -26,10 +35,4 @@ if __name__ == "__main__":
         y_data = list(zip(*words_ranks.values()))[1]
         popt, pcov = curve_fit(fun_to_fit, x_data, y_data)
         fitted = fun_to_fit(x_data, popt[0], popt[1])
-        plt.scatter(x_data, y_data, s = 10)
-        plt.plot(x_data, fitted)
-        plt.xlabel("Liczba wystąpień")
-        plt.ylabel("Ranga")
-        plt.title(file_name)
-        plt.figtext(0.65, 0.9, "c = {c}\nb = {b}".format(c = popt[0], b = popt[1]))
-        plt.show()
+        make_plot(file_name, x_data, y_data, fitted, popt)
