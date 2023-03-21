@@ -5,16 +5,19 @@ from scipy.optimize import curve_fit
 def fun_to_fit(r, c, b):
     return c*r**b
 
+def generate_words_ranks(file_name):
+    with open(file_name, "r", encoding="utf-8") as file:
+        words = file.read().split()
+        words = [sub(r'\W+', '', word.lower()) for word in words]
+        words_dict = {word: words.count(word) for word in set(words)}
+    words_dict = dict(sorted(words_dict.items(), reverse=True, key=lambda item: item[1]))
+    words_ranks = {rank + 1: (word, words_dict[word]) for rank, word in enumerate(words_dict.keys())}
+    return words_ranks
+
 if __name__ == "__main__":
     files = ["tekst_1.txt"]
     for file_name in files:
-        words_dict = {}
-        with open(file_name, "r", encoding="utf-8") as file:
-            words = file.read().split()
-            words = [sub(r'\W+', '', word.lower()) for word in words]
-            words_dict = {word: words.count(word) for word in set(words)}
-        words_dict = dict(sorted(words_dict.items(), reverse=True, key=lambda item: item[1]))
-        words_ranks = {rank + 1: (word, words_dict[word]) for rank, word in enumerate(words_dict.keys())}
+        words_ranks = generate_words_ranks(file_name)
         x_data = list(words_ranks.keys())
         y_data = list(zip(*words_ranks.values()))[1]
         popt, pcov = curve_fit(fun_to_fit, x_data, y_data)
