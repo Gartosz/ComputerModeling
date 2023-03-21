@@ -29,7 +29,7 @@ def make_plot(file_name, x_data, y_data, fitted, popt):
     plt.yscale("log")
     plt.title(file_name)
     plt.figtext(0.55, 0.8, "c = {c}\nb = {b}".format(c = popt[0], b = popt[1]))
-    plt.show()
+    plt.savefig(file_name.removesuffix("txt") + "svg", format = "svg")
 
 if __name__ == "__main__":
     files = glob("*.txt")
