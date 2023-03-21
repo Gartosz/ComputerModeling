@@ -1,5 +1,7 @@
 from re import sub
 from matplotlib import pyplot as plt
+def fun_to_fit(r, c, b):
+    return c*r**b
 
 if __name__ == "__main__":
     files = ["tekst_1.txt"]
