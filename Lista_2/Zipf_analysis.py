@@ -28,7 +28,7 @@ def make_plot(file_name, x_data, y_data, fitted, popt):
     plt.xscale("log")
     plt.yscale("log")
     plt.title(file_name)
-    plt.figtext(0.65, 0.9, "c = {c}\nb = {b}".format(c = popt[0], b = popt[1]))
+    plt.figtext(0.55, 0.8, "c = {c}\nb = {b}".format(c = popt[0], b = popt[1]))
     plt.show()
 
 if __name__ == "__main__":
