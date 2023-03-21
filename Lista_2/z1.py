@@ -1,5 +1,7 @@
 from re import sub
 from matplotlib import pyplot as plt
+from scipy.optimize import curve_fit
+
 def fun_to_fit(r, c, b):
     return c*r**b
 
@@ -15,6 +17,7 @@ if __name__ == "__main__":
         words_ranks = {rank + 1: (word, words_dict[word]) for rank, word in enumerate(words_dict.keys())}
         x_data = list(words_ranks.keys())
         y_data = list(zip(*words_ranks.values()))[1]
+        popt, pcov = curve_fit(fun_to_fit, x_data, y_data)
         plt.scatter(x_data, y_data, s = 10)
         plt.xlabel("Liczba wystąpień")
         plt.ylabel("Ranga")
