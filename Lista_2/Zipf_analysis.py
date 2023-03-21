@@ -24,6 +24,8 @@ def make_plot(file_name, x_data, y_data, fitted, popt):
     plt.plot(x_data, fitted, 'b')
     plt.xlabel("Liczba wystąpień")
     plt.ylabel("Ranga")
+    plt.xscale("log")
+    plt.yscale("log")
     plt.title(file_name)
     plt.figtext(0.65, 0.9, "c = {c}\nb = {b}".format(c = popt[0], b = popt[1]))
     plt.show()
