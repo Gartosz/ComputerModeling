@@ -5,11 +5,15 @@ from scipy.optimize import curve_fit
 def fun_to_fit(r, c, b):
     return c*r**b
 
-def generate_words_ranks(file_name):
+def process_file(file_name):
     with open(file_name, "r", encoding="utf-8") as file:
         words = file.read().split()
         words = [sub(r'\W+', '', word.lower()) for word in words]
         words_dict = {word: words.count(word) for word in set(words)}
+    return words_dict
+
+def generate_words_ranks(file_name):
+    words_dict = process_file(file_name)
     words_dict = dict(sorted(words_dict.items(), reverse=True, key=lambda item: item[1]))
     words_ranks = {rank + 1: (word, words_dict[word]) for rank, word in enumerate(words_dict.keys())}
     return words_ranks
