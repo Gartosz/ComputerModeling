@@ -11,7 +11,9 @@ if __name__ == "__main__":
             words_dict = {word: words.count(word) for word in set(words)}
         words_dict = dict(sorted(words_dict.items(), reverse=True, key=lambda item: item[1]))
         words_ranks = {rank + 1: (word, words_dict[word]) for rank, word in enumerate(words_dict.keys())}
-        plt.plot(words_ranks.keys(), list(zip(*words_ranks.values()))[1])
+        x_data = list(words_ranks.keys())
+        y_data = list(zip(*words_ranks.values()))[1]
+        plt.scatter(x_data, y_data, s = 10)
         plt.xlabel("Liczba wystąpień")
         plt.ylabel("Ranga")
         plt.show()
