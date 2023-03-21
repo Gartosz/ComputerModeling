@@ -20,6 +20,7 @@ def generate_words_ranks(file_name):
     return words_ranks
 
 def make_plot(file_name, x_data, y_data, fitted, popt):
+    plt.figure()
     plt.scatter(x_data, y_data, c='r', s = 7)
     plt.plot(x_data, fitted, 'b')
     plt.xlabel("Liczba wystąpień")
