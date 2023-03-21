@@ -18,7 +18,9 @@ if __name__ == "__main__":
         x_data = list(words_ranks.keys())
         y_data = list(zip(*words_ranks.values()))[1]
         popt, pcov = curve_fit(fun_to_fit, x_data, y_data)
+        fitted = fun_to_fit(x_data, popt[0], popt[1])
         plt.scatter(x_data, y_data, s = 10)
+        plt.plot(x_data, fitted)
         plt.xlabel("Liczba wystąpień")
         plt.ylabel("Ranga")
         plt.show()
