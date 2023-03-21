@@ -1,6 +1,7 @@
 from re import sub
 from matplotlib import pyplot as plt
 from scipy.optimize import curve_fit
+from glob import glob
 
 def fun_to_fit(r, c, b):
     return c*r**b
@@ -28,7 +29,7 @@ def make_plot(file_name, x_data, y_data, fitted, popt):
     plt.show()
 
 if __name__ == "__main__":
-    files = ["tekst_1.txt"]
+    files = glob("*.txt")
     for file_name in files:
         words_ranks = generate_words_ranks(file_name)
         x_data = list(words_ranks.keys())
