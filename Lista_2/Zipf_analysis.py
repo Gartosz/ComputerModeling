@@ -10,7 +10,7 @@ def process_file(file_name):
     with open(file_name, "r", encoding="utf-8") as file:
         words = file.read().split()
         words = [sub(r'\W+', '', word.lower()) for word in words]
-        words_dict = {word: words.count(word) for word in set(words)}
+        words_dict = {word: words.count(word) for word in set(words) if word != ''}
     return words_dict
 
 def generate_words_ranks(file_name):
