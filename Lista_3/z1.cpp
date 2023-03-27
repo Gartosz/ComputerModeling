@@ -34,6 +34,7 @@ class System_2d
         velocities[index].first = x_value;
         velocities[index].second = y_value;
     }
+
     void begin(std::size_t duration)
     {
         for (double time = 0; time <= duration; time += dt)
@@ -44,6 +45,7 @@ class System_2d
                     for (std::size_t j = 0; j < positions.size(); ++j)
                         if (j != i)
                             update_force(force, calculate_force(std::make_pair(i, j)));
+                    update_object(i, force);
                 }
     }
 
@@ -60,6 +62,25 @@ class System_2d
     {
         force.insert(std::end(force), std::begin(comp_force), std::end(comp_force));
     }
+
+    void update_velocity(std::pair<double, double> &velocity, std::vector<double> acceleration)
+    {
+        velocity.first += acceleration[0];
+        velocity.second += acceleration[1];
+    }
+
+    void update_position(std::pair<double, double> &position, std::pair<double, double> velocity)
+    {
+        position.first += velocity.first;
+        position.second += velocity.second;
+    }
+
+    void update_object(std::size_t index, std::vector<double> force)
+    {
+        update_velocity(velocities[index], force);
+        update_position(positions[index], velocities[index]);
+    }
+
     std::vector<double> calculate_force(std::pair<std::size_t, std::size_t> indexes)
     {
         double temp_force = (1*masses[indexes.first]*masses[indexes.second])/pow(distance(positions[indexes.first], positions[indexes.second]), 3);
@@ -89,5 +110,6 @@ int main()
     system.set_position(1, R, 0);
     system.set_velocity(1, 0, sqrt(system.masses[0]/R));
     system.rigid[0] = false;
+    system.begin(100);
     return 0;
 }
