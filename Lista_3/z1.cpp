@@ -1,5 +1,17 @@
 #include <vector>
 #include <cmath>
+#include <ranges>
+#include <algorithm>
+#include <functional> 
+#include <iostream>
+
+template <typename T_vec, typename T_var>
+std::vector <T_vec> operator* (std::vector <T_vec> vec, const T_var var)
+{
+    std::transform (vec.begin (), vec.end (), vec.begin (), std::bind(std::multiplies<T_vec>(), std::placeholders::_1, var)) ;
+    return vec;
+}
+
 class System_2d
 {
     public:
