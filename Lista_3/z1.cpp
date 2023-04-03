@@ -72,6 +72,9 @@ class System_2d
                             update_force(force, calculate_force(std::make_pair(i, j)));
                     update_object(i, force/masses[i]);
                 }
+        }
+                
+        file << dt << " " << calculate_error(positions[0], positions[1]) << std::endl;
     }
 
     void reset()
@@ -132,6 +135,12 @@ class System_2d
         result[0] = pos2.first - pos1.first;
         result[1] = pos2.second - pos1.second;
         return result;
+    }
+
+    double calculate_error(std::pair<double, double> pos1, std::pair<double, double> pos2)
+    {
+        double difference = distance(pos1, pos2) - r;
+        return difference > 0 ? difference : -difference;
     }
 };
 
