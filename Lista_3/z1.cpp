@@ -12,6 +12,19 @@ std::vector <T_vec> operator* (std::vector <T_vec> vec, const T_var var)
     return vec;
 }
 
+template <typename T_vec, typename T_var>
+std::vector <T_vec> operator/ (std::vector <T_vec> vec, const T_var var)
+{
+    std::transform (vec.begin (), vec.end (), vec.begin (), std::bind(std::divides<T_vec>(), std::placeholders::_1, var)) ;
+    return vec;
+}
+
+template<typename _Ty1, typename _Ty2>
+std::ostream& operator<<(std::ostream& _os, const std::pair<_Ty1, _Ty2>& _p) {
+    _os << _p.first << ' ' << _p.second;
+    return _os;
+}
+
 class System_2d
 {
     public:
