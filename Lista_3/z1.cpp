@@ -70,7 +70,7 @@ class System_2d
                     for (std::size_t j = 0; j < positions.size(); ++j)
                         if (j != i)
                             update_force(force, calculate_force(std::make_pair(i, j)));
-                    update_object(i, force);
+                    update_object(i, force/masses[i]);
                 }
     }
 
@@ -99,14 +99,14 @@ class System_2d
 
     void update_velocity(std::pair<double, double> &velocity, std::vector<double> acceleration)
     {
-        velocity.first += acceleration[0];
-        velocity.second += acceleration[1];
+        velocity.first += acceleration[0] * dt;
+        velocity.second += acceleration[1] * dt;
     }
 
     void update_position(std::pair<double, double> &position, std::pair<double, double> velocity)
     {
-        position.first += velocity.first;
-        position.second += velocity.second;
+        position.first += velocity.first * dt;
+        position.second += velocity.second * dt;
     }
 
     void update_object(std::size_t index, std::vector<double> force)
@@ -117,7 +117,7 @@ class System_2d
 
     std::vector<double> calculate_force(std::pair<std::size_t, std::size_t> indexes)
     {
-        double temp_force = (1*masses[indexes.first]*masses[indexes.second])/pow(distance(positions[indexes.first], positions[indexes.second]), 3);
+        double temp_force = (1.0*masses[indexes.first]*masses[indexes.second])/pow(distance(positions[indexes.first], positions[indexes.second]), 3);
         return distance_vector(positions[indexes.first], positions[indexes.second]) * temp_force;
     }
 
