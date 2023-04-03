@@ -39,6 +39,11 @@ class System_2d
         file.open("data_out.txt");
     }
 
+    ~System_2d()
+    {
+        file.close();
+    }
+
     void set_position(std::size_t index, double x_value, double y_value)
     {
         positions[index].first = x_value;
