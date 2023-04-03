@@ -70,6 +70,12 @@ class System_2d
                 }
     }
 
+    void reset()
+    {
+        std::fill(positions.begin(), positions.end(), std::make_pair(0, 0));
+        std::fill(velocities.begin(), velocities.end(), std::make_pair(0, 0));
+    }
+
     std::size_t n = 0;
     double dt = 0.1;
     double r = 0;
@@ -125,15 +131,24 @@ class System_2d
     }
 };
 
+void set_values(System_2d &system, std::size_t R, double dt)
+{
+    system.positions[1].first = R;
+    system.set_position(1, R, 0);
+    system.set_velocity(1, 0, sqrt(0.5));
+    system.dt = dt;
+}
+
 int main()
 {
     System_2d system(2);
-    std::size_t R = 5;
-
-    system.positions[1].first = R;
-    system.set_position(1, R, 0);
-    system.set_velocity(1, 0, sqrt(system.masses[0]/R));
     system.rigid[0] = false;
-    system.begin(100);
+    double R = 5;
+    for (double dt = 1; dt > 0.0000001; dt /= 10)
+    {
+        system.reset();
+        set_values(system, R, dt);
+        system.begin();
+    }
     return 0;
 }
