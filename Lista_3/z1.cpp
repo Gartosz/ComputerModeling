@@ -1,3 +1,4 @@
+#define _USE_MATH_DEFINES
 #include <vector>
 #include <cmath>
 #include <ranges>
@@ -56,9 +57,12 @@ class System_2d
         velocities[index].second = y_value;
     }
 
-    void begin(std::size_t duration)
+    void begin(std::size_t n_laps = 1)
     {
-        for (double time = 0; time <= duration; time += dt)
+        file << positions[0] << " " << positions[1] << std::endl;
+        double t_max = n_laps*2*M_PI*pow(r, 1.5)*sqrt(masses[1]);
+        for (double time = 0; time <= t_max; time += dt)
+        {
             for (std::size_t i = 0; i < positions.size(); ++i)
                 if (rigid[i])  
                 {
