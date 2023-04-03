@@ -30,12 +30,13 @@ std::ostream& operator<<(std::ostream& _os, const std::pair<_Ty1, _Ty2>& _p) {
 class System_2d
 {
     public:
-    System_2d(std::size_t N = 3, double mass = 1, double _dt = 0.001) : n(N), dt(_dt) 
+    System_2d(std::size_t N = 3, double mass = 1, double _dt = 0.001, double R = 5) : n(N), dt(_dt) , r(R)
     {
-        positions.resize(N);
-        velocities.resize(N);
-        masses.resize(N);
-        std::fill(masses.begin(), masses.end(), mass);
+        positions.resize(N, std::make_pair(0, 0));
+        velocities.resize(N, std::make_pair(0, 0));
+        masses.resize(N, mass);
+        rigid.resize(N, true);
+        file.open("data_out.txt");
     }
 
     void set_position(std::size_t index, double x_value, double y_value)
