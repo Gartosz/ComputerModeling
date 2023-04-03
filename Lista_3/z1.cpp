@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <functional> 
 #include <iostream>
+#include <fstream>
+
 
 template <typename T_vec, typename T_var>
 std::vector <T_vec> operator* (std::vector <T_vec> vec, const T_var var)
@@ -64,12 +66,15 @@ class System_2d
 
     std::size_t n = 0;
     double dt = 0.1;
+    double r = 0;
     std::vector<std::pair<double, double>> positions{};
     std::vector<std::pair<double, double>> velocities{};
     std::vector<double> masses {};
     std::vector<bool> rigid{true};
 
     private:
+
+    std::ofstream file;
 
     void update_force(std::vector<double> &force, std::vector<double> comp_force)
     {
