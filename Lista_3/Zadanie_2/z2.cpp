@@ -52,11 +52,11 @@ class System_2d
         velocities[index].second = y_value;
     }
 
-    void begin(std::string filename, std::size_t n_laps = 1)
+    void begin(std::string filename, double multiplier = 1)
     {
         file.open(filename);
         file << positions[0] << " " << positions[1] << std::endl;
-        double t_max = n_laps*2*M_PI*pow(r, 1.5)*sqrt(masses[1]);
+        double t_max = 100.0*multiplier;
         for (double time = 0; time <= t_max; time += dt)
         {
             for (std::size_t i = 0; i < positions.size(); ++i)
@@ -70,8 +70,6 @@ class System_2d
                 }
             file << positions[0] << " " << positions[1] << std::endl;
         }
-                
-        // file << dt << " " << calculate_error(positions[0], positions[1]) << std::endl;
         file.close();
     }
 
