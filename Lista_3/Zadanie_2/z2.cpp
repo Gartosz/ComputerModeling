@@ -6,6 +6,8 @@
 #include <functional> 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <Windows.h>
 
 
 template <typename T_vec, typename T_var>
@@ -159,5 +161,6 @@ int main()
         std::string velocity = std::to_string(v);
         system.begin("v_" + std::to_string(int(v)) + "_" + velocity.substr(velocity.find(".") + 1, velocity.length() - 1) + ".txt", v);
     }
+    std::system(("python process_data.py " + std::to_string(max_v0) + " " + std::to_string(system.masses[0]) + " " + std::to_string(system.masses[1])).c_str());
     return 0;
 }
