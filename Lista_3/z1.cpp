@@ -148,7 +148,7 @@ void set_values(System_2d &system, std::size_t R, double dt)
 {
     system.positions[1].first = R;
     system.set_position(1, R, 0);
-    system.set_velocity(1, 0, sqrt(0.5));
+    system.set_velocity(1, 0, sqrt(system.masses[0]/R));
     system.dt = dt;
 }
 
