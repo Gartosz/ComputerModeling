@@ -149,10 +149,15 @@ void set_values(System_2d &system, std::size_t R, double velocity)
 int main()
 {
     System_2d system(2, 0.0001);
-    double R = 5;
-    system.reset();
-    set_values(system, 1, 0.0001);
-    system.set_velocity(0, 0, -sqrt(0.5));
-    system.begin("two_bodies.txt", 1);
+    double R = 1;
+    double step = 0.05;
+    double max_v0 = 1;
+    for (double v = 0.05; v <= max_v0; v += step)
+    {
+        system.reset();
+        set_values(system, R, v);
+        std::string velocity = std::to_string(v);
+        system.begin("v_" + std::to_string(int(v)) + "_" + velocity.substr(velocity.find(".") + 1, velocity.length() - 1) + ".txt", v);
+    }
     return 0;
 }
