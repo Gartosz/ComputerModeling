@@ -140,12 +140,11 @@ class System_2d
 
 };
 
-void set_values(System_2d &system, std::size_t R, double dt)
+void set_values(System_2d &system, std::size_t R, double velocity)
 {
-    system.positions[1].first = R;
     system.set_position(1, R, 0);
-    system.set_velocity(1, 0, sqrt(0.5));
-    system.dt = dt;
+    system.set_velocity(0, 0, -velocity);
+    system.set_velocity(1, 0, velocity);
 }
 
 int main()
