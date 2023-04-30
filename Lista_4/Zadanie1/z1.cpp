@@ -25,5 +25,9 @@ void generate_mt(std::size_t iterations = 1000, uint32_t seed = time(NULL))
 
 int main()
 {
+    std::random_device dev;
+    uint32_t seed = dev();
+    generate_rand(1000000, seed);
+    generate_mt(1000000, seed);
     return 0;
 }
