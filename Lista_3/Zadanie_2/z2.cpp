@@ -140,11 +140,6 @@ class System_2d
         return result;
     }
 
-    double calculate_error(std::pair<double, double> pos1, std::pair<double, double> pos2)
-    {
-        double difference = distance(pos1, pos2) - r;
-        return difference > 0 ? difference : -difference;
-    }
 };
 
 void set_values(System_2d &system, std::size_t R, double dt)
