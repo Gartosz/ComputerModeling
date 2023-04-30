@@ -13,3 +13,5 @@ Makefile
 *.qbs
 *.code-workspace
 *.txt
+*.svg
+*.png
