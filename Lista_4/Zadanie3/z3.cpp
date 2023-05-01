@@ -26,5 +26,10 @@ int main()
     std::stringstream run_time;
     run_time << std::put_time(std::localtime(&in_time_t), "%Y%m%d_%H%M%S");
 
+    std::random_device dev;
+    uint32_t seed = dev();
+    std::mt19937 rng(seed);
+    std::uniform_int_distribution<int> distribution_0_1(0, 1);
+
     return 0;
 }
