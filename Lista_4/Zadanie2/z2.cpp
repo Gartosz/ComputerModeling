@@ -24,6 +24,23 @@ void generate_1D_walk(std::mt19937 &rng, std::uniform_int_distribution<int> &dis
     file.close();
 }
 
+void generate_2D_walk(std::mt19937 &rng, std::uniform_int_distribution<int> &distribution, std::size_t iterations = 1000, uint32_t seed = time(NULL), std::string run_time = "00000000_000000", std::size_t n = 0)
+{
+    std::ofstream file("2D/" + run_time + "/" + std::to_string(seed) + "_" + std::to_string(n) + ".txt");
+    std::vector<std::vector<int>> moves{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    int pos[2] = {0, 0};
+    std::vector<int> next_move{0, 0};
+    file << pos[0] << " " << pos[1] << "\n";
+    for (int i = 0; i < iterations; ++i)
+    {
+        next_move = moves[distribution(rng)];
+        pos[0] += next_move[0];
+        pos[1] += next_move[1];
+        file << pos[0] << " " << pos[1] << "\n";
+    }
+    file.close();
+}
+
 int main()
 {
     auto const now = std::chrono::system_clock::now();
