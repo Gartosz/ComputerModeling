@@ -4,6 +4,11 @@
 #include <string>
 #include <random>
 #include <vector>
+#include <chrono>
+#include <sstream>
+#include <iomanip>
+#include <iostream>
+
 int generate_1D_walk(std::mt19937 &rng, std::uniform_int_distribution<int> &distribution, std::size_t iterations = 1000)
 {
     int pos_x = 0;
@@ -15,6 +20,11 @@ int generate_1D_walk(std::mt19937 &rng, std::uniform_int_distribution<int> &dist
 
 int main()
 {
+    auto const now = std::chrono::system_clock::now();
+    auto const in_time_t = std::chrono::system_clock::to_time_t(now);
+
+    std::stringstream run_time;
+    run_time << std::put_time(std::localtime(&in_time_t), "%Y%m%d_%H%M%S");
 
     return 0;
 }
