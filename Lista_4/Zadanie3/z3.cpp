@@ -31,5 +31,15 @@ int main()
     std::mt19937 rng(seed);
     std::uniform_int_distribution<int> distribution_0_1(0, 1);
 
+    std::ofstream file(run_time.str() + ".txt");
+    size_t count_1 = 0, count_30 = 0;
+    int final_pos = 0;
+    for (std::size_t i = 0; i < 10000; ++i)
+    {
+        final_pos = generate_1D_walk(rng, distribution_0_1, 1000);
+        file << final_pos << "\n";
+    }
+    
+    std::cout << count_1 << " " << count_30;
     return 0;
 }
