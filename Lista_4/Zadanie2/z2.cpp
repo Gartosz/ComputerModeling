@@ -10,6 +10,20 @@
 #include <iostream>
 #include <sys/stat.h>
 #include <sys/types.h>
+
+void generate_1D_walk(std::mt19937 &rng, std::uniform_int_distribution<int> &distribution, std::size_t iterations = 1000, uint32_t seed = time(NULL), std::string run_time = "00000000_000000", std::size_t n = 0)
+{
+    std::ofstream file("1D/" + run_time + "/" + std::to_string(seed) + "_" + std::to_string(n) + ".txt");
+    int pos_x = 0;
+    file << "0 "<< pos_x << "\n";
+    for (int i = 0; i < iterations;)
+    {
+        pos_x += distribution(rng) ? 1 : -1;
+        file << ++i << " " << pos_x << "\n";
+    }
+    file.close();
+}
+
 int main()
 {
     auto const now = std::chrono::system_clock::now();
