@@ -22,5 +22,11 @@ int main()
 
     if(status_1 || status_2)
         return 0;
+
+    std::random_device dev;
+    uint32_t seed = dev();
+    std::mt19937 rng(seed);
+    std::uniform_int_distribution<int> distribution_0_1(0, 1);
+    std::uniform_int_distribution<int> distribution_0_3(0, 3);
     return 0;
 }
