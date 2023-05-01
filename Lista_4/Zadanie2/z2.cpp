@@ -59,5 +59,11 @@ int main()
     std::mt19937 rng(seed);
     std::uniform_int_distribution<int> distribution_0_1(0, 1);
     std::uniform_int_distribution<int> distribution_0_3(0, 3);
+
+    for (std::size_t i = 0; i < 10; ++i)
+    {
+        generate_1D_walk(rng, distribution_0_1, 100000, seed, run_time.str(), i);
+        generate_2D_walk(rng, distribution_0_3, 100000, seed, run_time.str(), i);
+    }
     return 0;
 }
