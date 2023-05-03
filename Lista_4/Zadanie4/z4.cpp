@@ -57,5 +57,9 @@ int main()
         pos_2d = generate_2D_walk(rng, distribution_0_3, 10000);
         count_2d += (pos_2d[0] || pos_2d[1]) ? 0 : 1;
     }
+    std::ofstream file(run_time.str() + ".txt");
+    file << "1D:\n" << "Liczba powrotow: " << count_1d << "; Prawdopodobienstwo: " << (double)count_1d/iterations << std::endl;
+    file << "2D:\n" << "Liczba powrotow: " << count_2d << "; Prawdopodobienstwo: " << (double)count_2d/iterations << std::endl;
+    file.close();
     return 0;
 }
