@@ -48,5 +48,14 @@ int main()
     std::uniform_int_distribution<int> distribution_0_1(0, 1);
     std::uniform_int_distribution<int> distribution_0_3(0, 3);
 
+    size_t count_1d = 0, count_2d = 0;
+    int *pos_2d = nullptr;
+    size_t iterations = 1000000;
+    for (std::size_t i = 0; i < iterations; ++i)
+    {
+        count_1d += generate_1D_walk(rng, distribution_0_1, 10000) ? 0 : 1;
+        pos_2d = generate_2D_walk(rng, distribution_0_3, 10000);
+        count_2d += (pos_2d[0] || pos_2d[1]) ? 0 : 1;
+    }
     return 0;
 }
