@@ -1,8 +1,22 @@
+#include <fstream>
 #include <ctime>
+#include <stdio.h>
+#include <string>
+#include <random>
+#include <vector>
 #include <chrono>
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+
+void generate_3D_walk(std::string run_time = "00000000_000000", std::size_t iterations = 1000)
+{
+    std::random_device dev;
+    uint32_t seed = dev();
+    std::mt19937 rng(seed);
+    std::uniform_int_distribution<int> distribution(0, 1);
+
+}
 
 int main()
 {
