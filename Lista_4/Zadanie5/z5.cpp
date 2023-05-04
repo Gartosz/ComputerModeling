@@ -16,6 +16,18 @@ void generate_3D_walk(std::string run_time = "00000000_000000", std::size_t iter
     std::mt19937 rng(seed);
     std::uniform_int_distribution<int> distribution(0, 1);
 
+    std::vector<int> pos(3, 0);
+    std::vector<int> next_move{0, 0};
+    std::ofstream file(run_time + ".txt");
+    file << pos[0] << " " << pos[1] << " " << pos[2] << "\n";
+    for (int i = 0; i < iterations; ++i)
+    {
+        pos[0] += distribution(rng) ? 1 : -1;
+        pos[1] += distribution(rng) ? 1 : -1;
+        pos[2] += distribution(rng) ? 1 : -1;
+        file << pos[0] << " " << pos[1] << " " << pos[2] << "\n";
+    }
+    file.close();
 }
 
 int main()
