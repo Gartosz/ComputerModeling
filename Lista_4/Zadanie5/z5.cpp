@@ -8,6 +8,7 @@
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <algorithm>
 
 void generate_3D_walk(std::string run_time = "00000000_000000", std::size_t iterations = 1000)
 {
@@ -22,9 +23,7 @@ void generate_3D_walk(std::string run_time = "00000000_000000", std::size_t iter
     file << pos[0] << " " << pos[1] << " " << pos[2] << "\n";
     for (int i = 0; i < iterations; ++i)
     {
-        pos[0] += distribution(rng) ? 1 : -1;
-        pos[1] += distribution(rng) ? 1 : -1;
-        pos[2] += distribution(rng) ? 1 : -1;
+        std::for_each(pos.begin(), pos.end(), [&distribution, &rng](int &step) {step += distribution(rng) ? 1 : -1;});
         file << pos[0] << " " << pos[1] << " " << pos[2] << "\n";
     }
     file.close();
