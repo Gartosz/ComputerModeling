@@ -12,9 +12,11 @@ class Position
 
 class EdensGrowthModel
 {
+    public:
     EdensGrowthModel()
     {
-
+        cells.push_back(Position(0,0));
+        free_spaces_cells.push_back(0);
     }
 
     private: 
