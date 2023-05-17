@@ -1,5 +1,7 @@
 #include <fstream>
 #include <vector>
+#include <random>
+
 class Position
 {
     public:
@@ -22,6 +24,9 @@ class EdensGrowthModel
     private: 
     std::vector<Position> cells{};
     std::vector<size_t> free_spaces_cells{};
+    std::random_device dev;
+    uint32_t seed = dev();
+    std::mt19937 rng();
 };
 
 
