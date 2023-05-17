@@ -7,6 +7,11 @@ class Position
     public:
     Position(int _x, int _y) : x(_x), y(_y){}
 
+    std::vector<int> getPos()
+    {
+        return std::vector<int> {x, y};
+    }
+
     private:
     int x = 0;
     int y = 0;
