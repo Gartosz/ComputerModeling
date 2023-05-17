@@ -16,6 +16,10 @@ class EdensGrowthModel
     {
 
     }
+
+    private: 
+    std::vector<Position> cells{};
+    std::vector<size_t> free_spaces_cells{};
 };
 
 
