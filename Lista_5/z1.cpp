@@ -19,6 +19,16 @@ class Position
         y = _y;
     }
 
+    Position operator+(const Position &second)
+    {
+        return Position(x + second.x, y + second.y);
+    }
+
+    bool operator==(const Position &second)
+    {
+        return x == second.x && y == second.y;
+    }
+
     private:
     int x = 0;
     int y = 0;
