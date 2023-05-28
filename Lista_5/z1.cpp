@@ -1,6 +1,7 @@
 #include <fstream>
 #include <vector>
 #include <random>
+#include <algorithm>
 
 class Position
 {
@@ -138,6 +139,15 @@ class EdensGrowthModel
     std::random_device dev;
     uint32_t seed = 0;
     std::mt19937 rng;
+    size_t firstToCheck = 0;
+    void updateCells(const std::vector<size_t> &toMove)
+    {
+        for(auto &index : toMove)
+        {
+            std::iter_swap(cells.begin() + index, cells.begin() + firstToCheck);
+            ++firstToCheck;
+        }
+    }
 };
 
 
