@@ -64,14 +64,16 @@ class EdensGrowthModel
     {
         cells.push_back(Cell(0, 0, 0));
         free_spaces_cells.push_back(0);
+        seed =  dev();
+        rng = std::mt19937(seed);
     }
 
     private: 
     std::vector<Cell> cells{};
     std::vector<size_t> free_spaces_cells{};
     std::random_device dev;
-    uint32_t seed = dev();
-    std::mt19937 rng();
+    uint32_t seed = 0;
+    std::mt19937 rng;
 };
 
 
