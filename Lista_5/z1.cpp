@@ -24,6 +24,39 @@ class Position
     int y = 0;
 };
 
+class Cell
+{
+    public:
+    Cell(int _x, int _y, size_t _index) : positon(_x, _y), index(_index){}
+
+    std::vector<size_t> getNeighbours()
+    {
+        std::vector<size_t> neighbours_indexes{};
+        
+        return neighbours_indexes;
+    }
+
+    bool hasAllNeighbours()
+    {
+        return neighbours.size() == 4;
+    }
+
+    size_t getIndex()
+    {
+        return index;
+    }
+
+    std::vector<int> pos()
+    {
+        return positon.getPos();
+    }
+
+    private:
+    Position positon{};
+    size_t index = 0;
+    std::vector<size_t*> neighbours;
+};
+
 class EdensGrowthModel
 {
     public:
