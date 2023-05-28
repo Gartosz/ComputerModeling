@@ -140,6 +140,26 @@ class EdensGrowthModel
     uint32_t seed = 0;
     std::mt19937 rng;
     size_t firstToCheck = 0;
+
+    void storeNeighbours()
+    {
+        std::vector<Position> availableOffsets{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        for (auto cell = cells.begin() + firstToCheck; cell != cells.end(); ++cell)
+        {
+            for(auto offset = availableOffsets.begin(); offset != availableOffsets.end(); ++offset)
+            {
+                if(cells.back().pos() + *offset == (*cell).pos())
+                {
+                    cells.back().addNeighbour(&(*cell));
+                    offset = availableOffsets.erase(offset);
+                    break;
+                }
+            }
+            if(cells.back().hasAllNeighbours())
+                break;
+        }
+    }
+    
     void updateCells(const std::vector<size_t> &toMove)
     {
         for(auto &index : toMove)
