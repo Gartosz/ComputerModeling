@@ -71,9 +71,9 @@ class Cell
         return positon;
     }
 
-    std::vector<int> pos()
+    size_t id()
     {
-        return positon.getPos();
+        return index;
     }
 
     private:
