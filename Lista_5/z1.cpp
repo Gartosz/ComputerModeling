@@ -5,8 +5,9 @@
 class Position
 {
     public:
-    Position();
+    Position(){};
     Position(int _x, int _y) : x(_x), y(_y){}
+    Position(Position &copy) : x(copy.x), y(copy.y){}
 
     std::vector<int> getPos()
     {
