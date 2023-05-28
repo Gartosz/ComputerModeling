@@ -125,6 +125,16 @@ class EdensGrowthModel
         seed =  dev();
         rng = std::mt19937(seed);
     }
+    
+    void generate(size_t number_of_cells = 100)
+    {
+        for(size_t i = 0; i < number_of_cells; ++i)
+        {
+            appendCell();
+            validateNeighbours();
+        }
+    }
+
     size_t appendCell()
     {
         std::uniform_int_distribution<int> distribution(firstToCheck, cells.size() - 1);
