@@ -98,14 +98,20 @@ class EdensGrowthModel
     EdensGrowthModel()
     {
         cells.push_back(Cell(0, 0, 0));
-        free_spaces_cells.push_back(0);
         seed =  dev();
         rng = std::mt19937(seed);
+    }
+    size_t appendCell()
+    {
+        std::uniform_int_distribution<int> distribution(firstToCheck, cells.size() - 1);
+        Cell &cellWithouAllNeighbourIndex = cells[distribution(rng)];
+        std::vector<Position> getAvailablePositions = cellWithouAllNeighbourIndex.getEmptyNeighbours();
+        distribution = std::uniform_int_distribution<int>(0, getAvailablePositions.size() - 1);
+        cells.push_back(Cell(getAvailablePositions[distribution(rng)], cells.size()));
     }
 
     private: 
     std::vector<Cell> cells{};
-    std::vector<size_t> free_spaces_cells{};
     std::random_device dev;
     uint32_t seed = 0;
     std::mt19937 rng;
