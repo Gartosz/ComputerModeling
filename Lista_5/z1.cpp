@@ -65,7 +65,7 @@ class Cell
     private:
     Position positon{};
     size_t index = 0;
-    std::vector<size_t*> neighbours;
+    std::vector<Cell*> neighbours;
 };
 
 class EdensGrowthModel
