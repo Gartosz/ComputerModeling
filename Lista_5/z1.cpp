@@ -70,6 +70,20 @@ class Cell
             throw std::logic_error("Cell can't have more than 4 neighbours!");
     }
 
+    std::vector<size_t> getFullIndexes()
+    {
+        std::vector<size_t> indexes{};
+        if(hasAllNeighbours)
+            indexes.push_back(index);
+        for(auto &neighbour : neighbours)
+        {
+            neighbour->addNeighbour(this);
+            if(neighbour->hasAllNeighbours())
+                indexes.push_back(neighbour->index);
+        }
+        return indexes;
+    }
+
     bool hasAllNeighbours()
     {
         return neighbours.size() == 4;
