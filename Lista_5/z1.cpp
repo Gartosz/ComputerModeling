@@ -47,6 +47,20 @@ class Cell
         return neighbours_indexes;
     }
 
+    std::vector<Position> getEmptyNeighbours()
+    {
+        std::vector<Position> emptyNeighbours{};
+        std::vector<Position> availableOffsets{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        
+        for (auto &offset: availableOffsets)
+        {
+            Position newPos = positon + offset;
+            if(posNotExists(newPos))
+                emptyNeighbours.push_back(newPos);
+        }
+
+        return emptyNeighbours;
+    }
     bool hasAllNeighbours()
     {
         return neighbours.size() == 4;
@@ -66,6 +80,16 @@ class Cell
     Position positon{};
     size_t index = 0;
     std::vector<Cell*> neighbours;
+
+    bool posNotExists(const Position &posToVerify)
+    {
+        for(auto &neighbour: neighbours)
+        {
+            if(neighbour->positon == posToVerify)
+                return false;
+        }
+        return true;
+    }
 };
 
 class EdensGrowthModel
