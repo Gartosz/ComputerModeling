@@ -5,11 +5,18 @@
 class Position
 {
     public:
+    Position();
     Position(int _x, int _y) : x(_x), y(_y){}
 
     std::vector<int> getPos()
     {
         return std::vector<int> {x, y};
+    }
+
+    void setPos(int _x, int _y) 
+    {
+        x = _x;
+        y = _y;
     }
 
     private:
