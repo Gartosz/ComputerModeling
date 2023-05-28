@@ -52,9 +52,9 @@ class Cell
         return neighbours.size() == 4;
     }
 
-    size_t getIndex()
+    Position pos()
     {
-        return index;
+        return positon;
     }
 
     std::vector<int> pos()
