@@ -39,11 +39,11 @@ class Cell
 {
     public:
     Cell(int _x, int _y, size_t _index) : positon(_x, _y), index(_index){}
+    Cell(Position pos, size_t _index) : positon(pos), index(_index){}
 
     std::vector<size_t> getNeighbours()
     {
         std::vector<size_t> neighbours_indexes{};
-        
         return neighbours_indexes;
     }
 
