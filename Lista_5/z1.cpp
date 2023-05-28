@@ -61,6 +61,15 @@ class Cell
 
         return emptyNeighbours;
     }
+
+    void addNeighbour(Cell *neighbour)
+    {
+        if(hasAllNeighbours)
+            neighbours.push_back(neighbour);
+        else
+            throw std::logic_error("Cell can't have more than 4 neighbours!");
+    }
+
     bool hasAllNeighbours()
     {
         return neighbours.size() == 4;
