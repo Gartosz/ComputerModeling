@@ -134,6 +134,13 @@ class EdensGrowthModel
         cells.push_back(Cell(getAvailablePositions[distribution(rng)], cells.size()));
     }
 
+    void validateNeighbours()
+    {
+        storeNeighbours();
+        std::vector<size_t> toMove = cells.back().getFullIndexes();
+        updateCells(toMove);
+    }
+
     private: 
     std::vector<Cell> cells{};
     std::random_device dev;
