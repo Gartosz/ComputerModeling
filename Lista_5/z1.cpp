@@ -162,7 +162,7 @@ class EdensGrowthModel
             appendCell();
             validateNeighbours();
         }
-        saveToFile();
+        afterGeneration();
     }
 
     private: 
@@ -238,7 +238,7 @@ class EdensGrowthModel
             throw e;
         }
     }
-    
+
     void exportCellsData()
     {
         std::ofstream file("eden_model_debug.txt");
@@ -252,11 +252,15 @@ class EdensGrowthModel
         file.close();
     }
 
-    void saveToFile()
+    void afterGeneration()
     {
         std::ofstream file("eden_model.txt");
+        Position massCenter{};
         for(auto &cell : cells)
+        {
             file << cell->pos() << "\n";
+            massCenter += cell->pos();
+        }
         file.close();
     }
 };
