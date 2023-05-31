@@ -141,8 +141,13 @@ class EdensGrowthModel
         rng = std::mt19937(seed);
     }
     
-    void generate(size_t number_of_cells = 100)
+    ~EdensGrowthModel()
     {
+        for (auto cell = cells.begin(); cell != cells.end(); ++cell)
+            delete *cell;
+        cells.clear();   
+    }
+
     void generate(size_t number_of_cells = 10)
     {
         for(size_t i = 0; i < number_of_cells - 1; ++i)
