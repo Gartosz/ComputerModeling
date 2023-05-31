@@ -110,6 +110,11 @@ class Cell
         return index;
     }
 
+    void setIndex(size_t id)
+    {
+        index = id;
+    }
+
     private:
     Position positon{};
     size_t index = 0;
