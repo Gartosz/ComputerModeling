@@ -31,6 +31,12 @@ class Position
         return x == second.x && y == second.y;
     }
 
+    friend std::ostream& operator<< (std::ostream& stream, const Position& position) 
+    {
+        stream << position.x << ";" << position.y;
+        return stream;
+    }
+
     private:
     int x = 0;
     int y = 0;
