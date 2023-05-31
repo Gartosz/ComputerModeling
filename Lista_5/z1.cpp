@@ -26,6 +26,13 @@ class Position
         return Position(x + second.x, y + second.y);
     }
 
+    Position& operator+=(const Position &second)
+    {
+        this->x += second.x;
+        this->y += second.y;
+        return *this;
+    }
+
     bool operator==(const Position &second)
     {
         return x == second.x && y == second.y;
