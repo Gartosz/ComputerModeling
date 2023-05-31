@@ -143,11 +143,14 @@ class EdensGrowthModel
     
     void generate(size_t number_of_cells = 100)
     {
-        for(size_t i = 0; i < number_of_cells; ++i)
+    void generate(size_t number_of_cells = 10)
+    {
+        for(size_t i = 0; i < number_of_cells - 1; ++i)
         {
             appendCell();
             validateNeighbours();
         }
+        saveToFile();
     }
 
     private: 
@@ -221,6 +224,12 @@ class EdensGrowthModel
     void exportCellsData()
     {
 
+    void saveToFile()
+    {
+        std::ofstream file("eden_model.txt");
+        for(auto &cell : cells)
+            file << cell->pos() << "\n";
+        file.close();
     }
 };
 
