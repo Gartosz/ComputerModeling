@@ -192,7 +192,13 @@ class EdensGrowthModel
     {
         for(auto &index : toMove)
         {
-            std::iter_swap(cells.begin() + index, cells.begin() + firstToCheck);
+            cells[index]->setIndex(firstToCheck);
+            cells[firstToCheck]->setIndex(index);
+            Cell *tempPtr = cells[index];
+
+            cells[index] = cells[firstToCheck];
+            cells[firstToCheck] = tempPtr;
+
             ++firstToCheck;
         }
     }
