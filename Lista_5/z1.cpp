@@ -118,7 +118,7 @@ class Cell
     private:
     Position positon{};
     size_t index = 0;
-    std::vector<Cell*> neighbours;
+    std::vector<Cell*> neighbours{};
 
     bool posNotExists(const Position &posToVerify)
     {
@@ -136,7 +136,7 @@ class EdensGrowthModel
     public:
     EdensGrowthModel()
     {
-        cells.push_back(Cell(0, 0, 0));
+        cells.push_back(new Cell(0, 0, 0));
         seed =  dev();
         rng = std::mt19937(seed);
     }
@@ -151,7 +151,7 @@ class EdensGrowthModel
     }
 
     private: 
-    std::vector<Cell> cells{};
+    std::vector<Cell*> cells{};
     std::random_device dev;
     uint32_t seed = 0;
     std::mt19937 rng;
@@ -164,11 +164,11 @@ class EdensGrowthModel
         {
             for(auto offset = availableOffsets.begin(); offset != availableOffsets.end(); ++offset)
             {
-                if(cells.back().pos() + *offset == (*cell).pos())
+                if((*cells.back()).pos() + *offset == (*cell)->pos())
                 {
                     try
                     {
-                        cells.back().addNeighbour(&(*cell));
+                        cells.back()->addNeighbour(*cell);
                     }
                     catch(const std::logic_error& e)
                     {
@@ -180,7 +180,7 @@ class EdensGrowthModel
                     break;
                 }
             }
-            if(cells.back().hasAllNeighbours())
+            if(cells.back()->hasAllNeighbours())
                 break;
         }
     }
@@ -197,10 +197,10 @@ class EdensGrowthModel
     void appendCell()
     {
         std::uniform_int_distribution<int> distribution(firstToCheck, cells.size() - 1);
-        Cell &cellWithouAllNeighbourIndex = cells[distribution(rng)];
-        std::vector<Position> getAvailablePositions = cellWithouAllNeighbourIndex.getEmptyNeighbours();
-        distribution = std::uniform_int_distribution<int>(0, getAvailablePositions.size() - 1);
-        cells.push_back(Cell(getAvailablePositions[distribution(rng)], cells.size()));
+        Cell *cellWithoutAllNeighbours = cells[distribution(rng)];
+        std::vector<Position> getAvailablePositions = cellWithoutAllNeighbours->getEmptyNeighbours();
+        std::uniform_int_distribution<int> distribution_(0, getAvailablePositions.size() - 1);
+        cells.push_back(new Cell(getAvailablePositions[distribution_(rng)], cells.size()));
     }
 
     void validateNeighbours()
@@ -208,7 +208,7 @@ class EdensGrowthModel
         storeNeighbours();
         try
         {
-            std::vector<size_t> toMove = cells.back().getFullIndexes();
+            std::vector<size_t> toMove = cells.back()->getFullIndexes();
             updateCells(toMove);
         }
         catch(const std::logic_error& e)
