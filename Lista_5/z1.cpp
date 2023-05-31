@@ -65,7 +65,7 @@ class Cell
 
     void addNeighbour(Cell *neighbour)
     {
-        if(hasAllNeighbours)
+        if(!hasAllNeighbours())
             neighbours.push_back(neighbour);
         else
             throw std::logic_error("Cell can't have more than 4 neighbours!");
@@ -74,7 +74,7 @@ class Cell
     std::vector<size_t> getFullIndexes()
     {
         std::vector<size_t> indexes{};
-        if(hasAllNeighbours)
+        if(hasAllNeighbours())
             indexes.push_back(index);
         for(auto &neighbour : neighbours)
         {
