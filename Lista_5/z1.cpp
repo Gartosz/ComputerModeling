@@ -73,7 +73,9 @@ class Cell
 
     void addNeighbour(Cell *neighbour)
     {
-        if(!hasAllNeighbours())
+        if(this == neighbour)
+            throw std::logic_error("Cell " + std::to_string(index) + " cannot be neighbour of itself!");
+        else if(!hasAllNeighbours())
             neighbours.push_back(neighbour);
         else
             throw std::logic_error("Cell " + std::to_string(index) + " can't have more than 4 neighbours! Couldn't add cell " + std::to_string(neighbour->index) + " as neighbour.");
