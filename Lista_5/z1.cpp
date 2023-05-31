@@ -234,6 +234,16 @@ class EdensGrowthModel
     
     void exportCellsData()
     {
+        std::ofstream file("eden_model_debug.txt");
+        for(auto &cell : cells)
+        {
+            file << cell->id() << " " << cell->pos() << "\n";
+            for(auto &neighbour : cell->getNeighbours())
+                file << cells[neighbour]->id() << " " << cells[neighbour]->pos() << ", ";
+            file << "\n";
+        }
+        file.close();
+    }
 
     void saveToFile()
     {
