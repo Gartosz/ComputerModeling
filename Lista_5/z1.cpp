@@ -135,22 +135,6 @@ class EdensGrowthModel
         }
     }
 
-    size_t appendCell()
-    {
-        std::uniform_int_distribution<int> distribution(firstToCheck, cells.size() - 1);
-        Cell &cellWithouAllNeighbourIndex = cells[distribution(rng)];
-        std::vector<Position> getAvailablePositions = cellWithouAllNeighbourIndex.getEmptyNeighbours();
-        distribution = std::uniform_int_distribution<int>(0, getAvailablePositions.size() - 1);
-        cells.push_back(Cell(getAvailablePositions[distribution(rng)], cells.size()));
-    }
-
-    void validateNeighbours()
-    {
-        storeNeighbours();
-        std::vector<size_t> toMove = cells.back().getFullIndexes();
-        updateCells(toMove);
-    }
-
     private: 
     std::vector<Cell> cells{};
     std::random_device dev;
@@ -184,6 +168,22 @@ class EdensGrowthModel
             std::iter_swap(cells.begin() + index, cells.begin() + firstToCheck);
             ++firstToCheck;
         }
+    }
+
+    void appendCell()
+    {
+        std::uniform_int_distribution<int> distribution(firstToCheck, cells.size() - 1);
+        Cell &cellWithouAllNeighbourIndex = cells[distribution(rng)];
+        std::vector<Position> getAvailablePositions = cellWithouAllNeighbourIndex.getEmptyNeighbours();
+        distribution = std::uniform_int_distribution<int>(0, getAvailablePositions.size() - 1);
+        cells.push_back(Cell(getAvailablePositions[distribution(rng)], cells.size()));
+    }
+
+    void validateNeighbours()
+    {
+        storeNeighbours();
+        std::vector<size_t> toMove = cells.back().getFullIndexes();
+        updateCells(toMove);
     }
 };
 
