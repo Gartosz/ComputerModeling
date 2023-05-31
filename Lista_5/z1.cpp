@@ -151,7 +151,16 @@ class EdensGrowthModel
             {
                 if(cells.back().pos() + *offset == (*cell).pos())
                 {
-                    cells.back().addNeighbour(&(*cell));
+                    try
+                    {
+                        cells.back().addNeighbour(&(*cell));
+                    }
+                    catch(const std::logic_error& e)
+                    {
+                        exportCellsData();
+                        throw e;
+                    }
+                    
                     offset = availableOffsets.erase(offset);
                     break;
                 }
@@ -182,8 +191,21 @@ class EdensGrowthModel
     void validateNeighbours()
     {
         storeNeighbours();
-        std::vector<size_t> toMove = cells.back().getFullIndexes();
-        updateCells(toMove);
+        try
+        {
+            std::vector<size_t> toMove = cells.back().getFullIndexes();
+            updateCells(toMove);
+        }
+        catch(const std::logic_error& e)
+        {
+            exportCellsData();
+            throw e;
+        }
+    }
+    
+    void exportCellsData()
+    {
+
     }
 };
 
