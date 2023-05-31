@@ -51,6 +51,8 @@ class Cell
     std::vector<size_t> getNeighbours()
     {
         std::vector<size_t> neighbours_indexes{};
+        for(auto &neighbour : neighbours)
+            neighbours_indexes.push_back(neighbour->id());
         return neighbours_indexes;
     }
 
