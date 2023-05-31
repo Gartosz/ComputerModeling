@@ -257,5 +257,6 @@ class EdensGrowthModel
 
 int main()
 {
-
+    EdensGrowthModel model;
+    model.generate(100000);
 }
