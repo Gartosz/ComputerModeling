@@ -43,6 +43,11 @@ class Position
         stream << position.x << ";" << position.y;
         return stream;
     }
+    
+    double distance(const Position &cellPos)
+    {
+        return std::sqrt(std::pow(x - cellPos.x, 2) + std::pow(y - cellPos.y, 2));
+    }
 
     private:
     int x = 0;
