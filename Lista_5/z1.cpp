@@ -175,7 +175,7 @@ class EdensGrowthModel
             appendCell();
             validateNeighbours();
         }
-        afterGeneration();
+        afterGeneration(number_of_cells);
     }
 
     private: 
@@ -269,14 +269,27 @@ class EdensGrowthModel
         }
         file.close();
     }
-
-    void afterGeneration()
+    
+    double calculateRadius()
     {
+        double radius = 0;
+        for(auto cell = cells.begin() + firstToCheck; cell != cells.end(); ++cell)
+        {
+            radius += massCentre.distance((*cell)->pos());
+        }
+        radius /= cells.size() - firstToCheck;
+        return radius;
+    }
+
+    void afterGeneration(size_t iterations)
+    {
+        std::ofstream file("eden_model_" + std::to_string(iterations) + ".txt");
         massCentre /= iterations;
+        double radius = calculateRadius();
+        file << "mass centre: " << massCentre << " r = " << radius << " n^(1/2) = " << 1.0 * std::sqrt(iterations) << "\n";
         for(auto &cell : cells)
         {
             file << cell->pos() << "\n";
-            massCenter += cell->pos();
         }
         file.close();
     }
