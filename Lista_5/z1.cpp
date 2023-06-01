@@ -25,11 +25,18 @@ class Position
     {
         return Position(x + second.x, y + second.y);
     }
-
+    
     Position& operator+=(const Position &second)
     {
         this->x += second.x;
         this->y += second.y;
+        return *this;
+    }
+
+    Position& operator/=(const size_t &value)
+    {
+        this->x = std::round(1.0*this->x/value);
+        this->y = std::round(1.0*this->y/value);
         return *this;
     }
 
