@@ -184,6 +184,7 @@ class EdensGrowthModel
     uint32_t seed = 0;
     std::mt19937 rng;
     size_t firstToCheck = 0;
+    Position massCentre{};
 
     void storeNeighbours()
     {
@@ -238,6 +239,7 @@ class EdensGrowthModel
         std::vector<Position> getAvailablePositions = cellWithoutAllNeighbours->getEmptyNeighbours();
         std::uniform_int_distribution<int> distribution_(0, getAvailablePositions.size() - 1);
         cells.push_back(new Cell(getAvailablePositions[distribution_(rng)], cells.size()));
+        massCentre += cells.back()->pos();
     }
 
     void validateNeighbours()
@@ -270,8 +272,7 @@ class EdensGrowthModel
 
     void afterGeneration()
     {
-        std::ofstream file("eden_model.txt");
-        Position massCenter{};
+        massCentre /= iterations;
         for(auto &cell : cells)
         {
             file << cell->pos() << "\n";
