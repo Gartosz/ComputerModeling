@@ -199,7 +199,7 @@ class EdensGrowthModel
                     {
                         cells.back()->addNeighbour(*cell);
                     }
-                    catch(const std::logic_error& e)
+                    catch(const std::exception& e)
                     {
                         exportCellsData();
                         throw e;
@@ -250,7 +250,7 @@ class EdensGrowthModel
             std::vector<Cell*> toMove = cells.back()->getFullCells();
             updateCells(toMove);
         }
-        catch(const std::logic_error& e)
+        catch(const std::exception& e)
         {
             exportCellsData();
             throw e;
