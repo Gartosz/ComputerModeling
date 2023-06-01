@@ -88,18 +88,19 @@ class Cell
             throw std::logic_error("Cell " + std::to_string(index) + " can't have more than 4 neighbours! Couldn't add cell " + std::to_string(neighbour->index) + " as neighbour.");
     }
 
-    std::vector<size_t> getFullIndexes()
+    std::vector<Cell*> getFullCells()
     {
-        std::vector<size_t> indexes{};
+        std::vector<Cell*> cells{};
         if(hasAllNeighbours())
-            indexes.push_back(index);
+            cells.push_back(this);
+
         for(auto &neighbour : neighbours)
         {
             neighbour->addNeighbour(this);
             if(neighbour->hasAllNeighbours())
-                indexes.push_back(neighbour->index);
+                cells.push_back(neighbour);
         }
-        return indexes;
+        return cells;
     }
 
     bool hasAllNeighbours()
@@ -200,16 +201,19 @@ class EdensGrowthModel
         }
     }
     
-    void updateCells(const std::vector<size_t> &toMove)
+    void updateCells(const std::vector<Cell*> &toMove)
     {
-        for(auto &index : toMove)
+        for(auto &cell : toMove)
         {
-            cells[index]->setIndex(firstToCheck);
-            cells[firstToCheck]->setIndex(index);
-            Cell *tempPtr = cells[index];
-
-            cells[index] = cells[firstToCheck];
-            cells[firstToCheck] = tempPtr;
+            if(cell->id() != firstToCheck)
+            {
+                Cell *tempPtr = cell;
+                size_t index = cell->id();
+                cells[cell->id()] = cells[firstToCheck];
+                cells[firstToCheck] = tempPtr;
+                cell->setIndex(firstToCheck);
+                cells[index]->setIndex(index);
+            }
 
             ++firstToCheck;
         }
@@ -229,7 +233,7 @@ class EdensGrowthModel
         storeNeighbours();
         try
         {
-            std::vector<size_t> toMove = cells.back()->getFullIndexes();
+            std::vector<Cell*> toMove = cells.back()->getFullCells();
             updateCells(toMove);
         }
         catch(const std::logic_error& e)
