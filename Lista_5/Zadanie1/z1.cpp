@@ -1,7 +1,11 @@
 #include <fstream>
 #include <vector>
 #include <random>
+#include <fstream>
 #include <algorithm>
+#include <string>
+#include <iostream>
+#include <cmath>
 
 class Position
 {
