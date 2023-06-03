@@ -61,7 +61,7 @@ class Position
     int y = 0;
 };
 
-class Class
+class Cell
 {
 
 };
